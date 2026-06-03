@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ScrapK DB</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <img src="/static/scrapk.webp" alt="ScrapK Logo" class="brand-logo" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover; background: none; border: none; padding: 0;">
+                <span class="brand-name">ScrapK Database</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <a href="/">
+                        <span class="nav-icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/vendors">
+                        <span class="nav-icon">👥</span>
+                        <span>Vendors List</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/add">
+                        <span class="nav-icon">➕</span>
+                        <span>Add Vendor</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout">
+                        <span class="nav-icon">🚪</span>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Dashboard Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <div class="page-title">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome back! Here is a summary of the ScrapK Vendor database.</p>
+                </div>
+                <a href="/add" class="btn btn-primary">
+                    <span>➕ Register Vendor</span>
+                </a>
+            </header>
+
+            <!-- Stats Showcase -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon primary">👥</div>
+                    <div class="stat-info">
+                        <span class="stat-value">{{ stats.total_vendors }}</span>
+                        <span class="stat-label">Total Registered</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon success">📱</div>
+                    <div class="stat-info">
+                        <span class="stat-value">{{ stats.smartphone_users }}</span>
+                        <span class="stat-label">Smartphone Users</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon warning">✨</div>
+                    <div class="stat-info">
+                        <span class="stat-value">Active</span>
+                        <span class="stat-label">System Status</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome Greeting Card -->
+            <div class="card">
+                <h2 class="card-title">🚀 Getting Started with ScrapK DB</h2>
+                <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+                    This administration console allows you to manage waste management vendors, collect profiling
+                    details, and keep track of digital readiness in your collection network.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="/vendors" class="btn btn-secondary">🔍 View Active Directory</a>
+                    <a href="/add" class="btn btn-primary">⚡ Register a New Vendor</a>
+                    {% if stats.total_vendors > 0 %}
+                    <a href="/export/xlsx" class="btn btn-secondary">📊 Export Excel</a>
+                    <a href="/export/csv" class="btn btn-secondary">📄 Export CSV</a>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

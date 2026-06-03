@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ScrapK DB</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+        
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: 1px solid transparent;
+        }
+        
+        .alert-danger {
+            color: #842029;
+            background-color: #f8d7da;
+            border-color: #f5c2c7;
+        }
+        
+        .alert-success {
+            color: #0f5132;
+            background-color: #d1e7dd;
+            border-color: #badbcc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container login-wrapper">
+        <main class="main-content" style="display: flex; justify-content: center; width: 100%; padding: 0;">
+            <div class="card login-card">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <img src="/static/scrapk.webp" alt="ScrapK Logo" style="display: inline-block; width: 64px; height: 64px; border-radius: 12px; object-fit: cover; margin-bottom: 1rem;">
+                    <h2 class="card-title text-center">Login to ScrapK DB</h2>
+                </div>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" class="form-control" required autofocus placeholder="Enter admin">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" required placeholder="Enter admin123">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Login</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
